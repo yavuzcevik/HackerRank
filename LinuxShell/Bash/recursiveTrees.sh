@@ -5,16 +5,19 @@
 #                  4-) rootArrayY (Array of the Y values of the roots)
 #
 declare -a recToLen=( "16" "8" "4" "2" "1" )
-read treeCount
-length=${recToLen[$(( treeCount -1 ))]}
-rootCount=$(( (32 / $length) - 1))
-
 declare -A matrix
 declare -a rootArrayX
 declare -a rootArrayY
+read treeCount
+length=${recToLen[$(( treeCount -1 ))]}
+rootCount=$(( (32 / $length) - 1))
 num_rows=63
 num_columns=100
-
+for ((i=1;i<=rootCount;i++)) do
+    #Calculating all coordinates of roots
+    rootArrayX[$i]=
+    rootArrayY[$i]=
+done
 for ((i=1;i<=num_rows;i++)) do
     for ((j=1;j<=num_columns;j++)) do
         matrix[$i,$j]="-"
