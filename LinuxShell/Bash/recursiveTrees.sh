@@ -11,8 +11,11 @@ declare -a rootArrayY
 read treeCount
 length=${recToLen[$(( treeCount -1 ))]}
 rootCount=$(( (32 / $length) - 1))
+#We suppose that numbers of rows and columns are static
 num_rows=63
+rootY=$num_rows
 num_columns=100
+rootX=$((num_columns / 2))
 iteration=1
 rootNumber=1
 while [ $iteration -le $treeCount ]
@@ -20,12 +23,11 @@ do
     for ((i=1;i<=$(( 2 ** (iteration - 1) ));i++)) do
     #Calculating all coordinates of roots
      rootArrayX[$rootNumber]=
-     rootArrayY[$rootNumber]=
-     #control echos
-     #echo "iteration number $iteration"
-     #echo "root number $rootNumber"
+     rootArrayY[$rootNumber]=$rootY
      (( rootNumber++ ))
     done
+    #Changes on the values of (X,Y) pairs
+    rootY=$(( rootY - (2 * (recToLen[$(( iteration - 1))])) ))
     (( iteration++ ))
     echo
 done
