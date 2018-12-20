@@ -20,13 +20,25 @@ iteration=1
 rootNumber=1
 while [ $iteration -le $treeCount ]
 do
+    echo " while basi rootX $rootX"
+    rootXTmp=$rootX
     for ((i=1;i<=$(( 2 ** (iteration - 1) ));i++)) do
     #Calculating all coordinates of roots
-     rootArrayX[$rootNumber]=
+     rootArrayX[$rootNumber]=$rootXTmp
      rootArrayY[$rootNumber]=$rootY
+     #control echos
+     #echo "iteration number $iteration"
+     #echo "root number $rootNumber"
+     #echo "rootY=${rootArrayY[$rootNumber]}"
+     echo "rootX=${rootArrayX[$rootNumber]}"
+     #echo "eklenecek sayı ${recToLen[$(( iteration - 1))]}"
+     #echo " $(( rootXTmp + (recToLen[$(( iteration - 1))] * 2) )) "
+     rootXTmp=$(( rootXTmp + (recToLen[$(( iteration - 1))] * 2) ))
      (( rootNumber++ ))
     done
     #Changes on the values of (X,Y) pairs
+    rootX=$(( rootX - recToLen[$(( iteration - 1))] ))
+    echo "rootX $rootX"
     rootY=$(( rootY - (2 * (recToLen[$(( iteration - 1))])) ))
     (( iteration++ ))
     echo
