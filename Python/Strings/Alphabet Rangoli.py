@@ -1,3 +1,4 @@
 s = "abcdefghijklmnopqrstuvwxyz"
-for i in range(len(s)):
-    print("-".join( s[::-1] + s[len(s)-i-1] + s ))
+length = int(input())-1
+for i in range(length+1):
+    print("-".join(s[length:length-i:-1] + s[length-i:length+1]).center(4 * (length+1) - 3, '-'))
