@@ -23,7 +23,7 @@ rootNumber=1
 #Initialising the base template
 for ((i=1;i<=num_rows;i++)) do
     for ((j=1;j<=num_columns;j++)) do
-        matrix[$j,$i]="-"
+        matrix[$j,$i]="_"
     done
 done
 
@@ -38,6 +38,10 @@ do
          #Adding vertical "1" characters
          rootYtmp=$(( rootY - j ))
          matrix[$rootXTmp,$rootYtmp]="1"
+         #Adding diagonal "1" characters starting from middle to the left
+         matrix[$(( rootXTmp - j - 1 )),$(( rootYtmp - recToLen[$(( iteration - 1 ))] ))]="1"
+         #Adding diagonal "1" characters starting from middle to the right
+         matrix[$(( rootXTmp + j + 1)),$(( rootYtmp - recToLen[$(( iteration - 1 ))] ))]="1"
         done
      rootXTmp=$(( rootXTmp + (recToLen[$(( iteration - 2))] * 2) ))
      (( rootNumber++ ))
